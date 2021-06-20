@@ -1,0 +1,10 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+<H1> This is PhoneBook </H1>
+    <ul>
+        {% for i in 0..10 %}
+          <li>ID | {{ i }} </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
