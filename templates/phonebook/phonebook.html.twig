@@ -2,6 +2,11 @@
 {% block body %}
 <H1> Książka Telefoniczna </H1>
     <h2><a href="{{ path('AddContact')}}">Dodaj kontakt</a></h2>
+    {% for message in app.flashes('success') %}
+        <div>
+            {{ message }}
+        </div>
+    {% endfor %}
     <table>
         <thead>
         <tr>

@@ -5,8 +5,10 @@ namespace App\Controller;
 
 
 use App\Entity\Contact;
+use App\Form\AddContact;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
@@ -14,21 +16,25 @@ class ContactController extends AbstractController
     /**
      * @Route("/add/", name="AddContact")
      */
-    public function addContact(EntityManagerInterface $entityManager)
+    public function addContact(EntityManagerInterface $entityManager, Request  $request)
     {
-        $contact = new Contact();
-        $contact->setName('Jan');
-        $contact->setLastName('Kowalski');
-        $contact->setPhoneNumber(666968857);
-        $contact->setLocality('Poznań');
-        $contact->setZipCode('01-004');
-        $contact->setStreet('Poznańska');
-        $contact->setNumberOfTheBulding(10);
-        $contact->setNumberApartment('43');
-        $entityManager->persist($contact);
-        $entityManager->flush();
+        $form =$this->createForm(AddContact::class);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $contact = $form->getData();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $this->addFlash('success','Dodano rekord do bazy danych');
 
-        return $this->render('phonebook/addcontact.html.twig');
+            return $this->redirectToRoute('phoneBook');
+        }
+        return $this->render('phonebook/addcontact.html.twig',[
+            'AddForm' => $form->createView(),
+        ]);
+
+//
+//
+//        return $this->render('phonebook/addcontact.html.twig');
     }
     /**
      * @Route("/delete/{slug}", name="DeleteContact")
@@ -40,11 +46,8 @@ class ContactController extends AbstractController
         $entityManager->remove($contact);
         $entityManager->flush();
         $repository = $entityManager->getRepository(Contact::class);
-        $contacts = $repository->findAll();
-        $response = $this->forward('App\Controller\PhoneBookController::homepage',[
-            'contacts' => $contacts
-        ]);
-        return $response;
+
+        return $this->redirectToRoute('phoneBook');
 
     }
 }

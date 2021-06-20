@@ -1,23 +1,28 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-    <form>
-        <label for="first_name">Imię</label>
-        <input type="text" name="first_name" id="first_name">
-        <label for="first_name">Nazwisko</label>
-        <input type="text" name="last_name">
-        <label for="first_name">Numer telefonu</label>
-        <input type="number" name="phone_number">
-        <label for="first_name">Miejscowość</label>
-        <input type="text" name="locality">
-        <label for="first_name">Kod pocztowy</label>
-        <input type="text" name="zip_code">
-        <label for="first_name">Ulica</label>
-        <input type="text" name="street">
-        <label for="first_name">Numer budynku</label>
-        <input type="number" name="number_bulding">
-        <label for="first_name">Numer mieszkania </label>
-        <input type="number" name="number_apartment">
+    <h1>Dodaj Kontakt!</h1>
+    {{ form_start(AddForm) }}
+    {{ form_widget(AddForm) }}
+{#    <form>#}
+{#        <label for="first_name">Imię</label>#}
+{#        <input type="text" name="first_name" id="first_name">#}
+{#        <label for="first_name">Nazwisko</label>#}
+{#        <input type="text" name="last_name">#}
+{#        <label for="first_name">Numer telefonu</label>#}
+{#        <input type="number" name="phone_number">#}
+{#        <label for="first_name">Miejscowość</label>#}
+{#        <input type="text" name="locality">#}
+{#        <label for="first_name">Kod pocztowy</label>#}
+{#        <input type="text" name="zip_code">#}
+{#        <label for="first_name">Ulica</label>#}
+{#        <input type="text" name="street">#}
+{#        <label for="first_name">Numer budynku</label>#}
+{#        <input type="number" name="number_bulding">#}
+{#        <label for="first_name">Numer mieszkania </label>#}
+{#        <input type="number" name="number_apartment">#}
+        <button type="submit" name="submit" id="submit">Zapisz!</button>
+{#    </form>#}
+{#    <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>#}
 
-    </form>
-    <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>
+    {{ form_end(AddForm) }}
 {% endblock %}
