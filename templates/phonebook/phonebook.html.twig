@@ -1,7 +1,7 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
 <H1> Książka Telefoniczna </H1>
-    <h2><a href="">Dodaj kontakt</a></h2>
+    <h2><a href="{{ path('AddContact')}}">Dodaj kontakt</a></h2>
     <table>
         <thead>
         <tr>
@@ -18,21 +18,20 @@
         </tr>
         </thead>
         <tbody>
-        {% for i in 0..10 %}
+        {% for contact in contacts %}
             <tr>
-                <td><a href="{{ path('ContactDetail',{slug: i })}}">{{ i }}</a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="">Edytuj</a> | <a href="">Usuń</a></td>
+                <td><a href="{{ path('ContactDetail',{slug: contact.id })}}">{{ contact.id }}</a></td>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.getLastName() }}</td>
+                <td>{{ contact.getPhoneNumber() }}</td>
+                <td>{{ contact.getLocality() }}</td>
+                <td>{{ contact.getZipCode() }}</td>
+                <td>{{ contact.getStreet() }}</td>
+                <td>{{ contact.getNumberOfTheBulding() }}</td>
+                <td>{{ contact.getNumberApartment() }}</td>
+                <td><a href="">Edytuj</a> | <a href="{{ path('DeleteContact',{slug: contact.id })}}">Usuń</a></td>
             </tr>
         {% endfor %}
-
         </tbody>
     </table>
 
