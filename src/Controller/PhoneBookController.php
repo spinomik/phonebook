@@ -12,14 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class PhoneBookController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="phoneBook")
      */
     public function homepage()
     {
         return $this->render('phonebook/phonebook.html.twig');
     }
     /**
-     * @Route("/contact/{slug}")
+     * @Route("/contact/{slug}", name="ContactDetail")
      */
     public function show($slug)
     {

@@ -1,10 +1,39 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-<H1> This is PhoneBook </H1>
-    <ul>
+<H1> Książka Telefoniczna </H1>
+    <h2><a href="">Dodaj kontakt</a></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Miejscowość</th>
+            <th>Kod pocztowy</th>
+            <th>Ulica</th>
+            <th>Numer budynku</th>
+            <th>Numer mieszkania</th>
+            <th>Akcja</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for i in 0..10 %}
-          <li>ID | {{ i }} </li>
+            <tr>
+                <td><a href="{{ path('ContactDetail',{slug: i })}}">{{ i }}</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="">Edytuj</a><a href="">Usuń</a></td>
+            </tr>
         {% endfor %}
-    </ul>
+
+        </tbody>
+    </table>
 
 {% endblock %}

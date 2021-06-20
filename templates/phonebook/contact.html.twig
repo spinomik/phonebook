@@ -1,5 +1,34 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
-<h1>This is Contakt Page</h1>
-    <H2>This is homepege contakt where id={{ id }}</H2>
+<h1>Szczegóły kontaktu</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Numer telefonu</th>
+            <th>Miejscowość</th>
+            <th>Kod pocztowy</th>
+            <th>Ulica</th>
+            <th>Numer budynku</th>
+            <th>Numer mieszkania</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ id }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>
 {% endblock %}
