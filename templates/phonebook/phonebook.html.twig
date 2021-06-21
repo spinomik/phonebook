@@ -10,7 +10,11 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            {% if sort == 'id_up' %}
+            <th><a href="{{ path('phoneBook', {sort: 'id_down'})}}">ID^</a></th>
+            {% elseif sort == 'id_down' %}
+            <th><a href="{{ path('phoneBook', {sort: 'id_up'})}}">ID </a></th>
+            {% endif %}
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Numer telefonu</th>
@@ -23,9 +27,9 @@
         </tr>
         </thead>
         <tbody>
-        {% for contact in contacts %}
+        {% for contact in pagination  %}
             <tr>
-                <td><a href="{{ path('ContactDetail',{slug: contact.id })}}">{{ contact.id }}</a></td>
+                <td>{{ contact.id }}</td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.getLastName() }}</td>
                 <td>{{ contact.getPhoneNumber() }}</td>
@@ -34,10 +38,14 @@
                 <td>{{ contact.getStreet() }}</td>
                 <td>{{ contact.getNumberOfTheBulding() }}</td>
                 <td>{{ contact.getNumberApartment() }}</td>
-                <td><a href="">Edytuj</a> | <a href="{{ path('DeleteContact',{slug: contact.id })}}">Usuń</a></td>
+                <td><a href="{{ path('EditContact',{slug: contact.id })}}">Edytuj</a> | <a href="{{ path('DeleteContact',{slug: contact.id })}}">Usuń</a> |
+                    <a href="{{ path('ContactDetail',{slug: contact.id })}}">Wyświetl</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 {% endblock %}

@@ -28,6 +28,7 @@ class ContactController extends AbstractController
 
             return $this->redirectToRoute('phoneBook');
         }
+
         return $this->render('phonebook/addcontact.html.twig',[
             'AddForm' => $form->createView(),
         ]);
@@ -45,10 +46,32 @@ class ContactController extends AbstractController
         $contact = $repository->findOneBy(['id' =>$slug]);
         $entityManager->remove($contact);
         $entityManager->flush();
-        $repository = $entityManager->getRepository(Contact::class);
 
         return $this->redirectToRoute('phoneBook');
-
     }
+
+    /**
+     * @Route("/edit/{slug}", name="EditContact")
+     */
+
+    public function edit(EntityManagerInterface $entityManager, Request $request ){
+        $repository = $entityManager->getRepository(Contact::class);
+        $contact = $repository->findAll();
+        $form =$this->createForm(AddContact::class, $contact);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $contact2 = $form->getData();
+            $entityManager->persist($contact2);
+            $entityManager->flush();
+            $this->addFlash('success','Dodano rekord do bazy danych');
+
+            return $this->redirectToRoute('phoneBook');
+        }
+
+        return $this->render('phonebook/addcontact.html.twig',[
+            'AddForm' => $form->createView(),
+        ]);
+    }
+
 }
 

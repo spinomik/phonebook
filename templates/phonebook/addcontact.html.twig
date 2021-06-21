@@ -3,23 +3,15 @@
     <h1>Dodaj Kontakt!</h1>
     {{ form_start(AddForm) }}
     {{ form_widget(AddForm) }}
-{#    <form>#}
-{#        <label for="first_name">Imię</label>#}
-{#        <input type="text" name="first_name" id="first_name">#}
-{#        <label for="first_name">Nazwisko</label>#}
-{#        <input type="text" name="last_name">#}
-{#        <label for="first_name">Numer telefonu</label>#}
-{#        <input type="number" name="phone_number">#}
-{#        <label for="first_name">Miejscowość</label>#}
-{#        <input type="text" name="locality">#}
-{#        <label for="first_name">Kod pocztowy</label>#}
-{#        <input type="text" name="zip_code">#}
-{#        <label for="first_name">Ulica</label>#}
-{#        <input type="text" name="street">#}
-{#        <label for="first_name">Numer budynku</label>#}
-{#        <input type="number" name="number_bulding">#}
-{#        <label for="first_name">Numer mieszkania </label>#}
-{#        <input type="number" name="number_apartment">#}
+{#    {{ form_row(AddForm.Name) }}#}
+{#    {{ form_row(AddForm.last_name) }}#}
+{#    {{ form_row(AddForm.phone_number) }}#}
+{#    {{ form_row(AddForm.locality) }}#}
+{#    {{ form_row(AddForm.zip_code) }}#}
+{#    {{ form_row(AddForm.street) }}#}
+{#    {{ form_row(AddForm.number_of_the_bulding) }}#}
+{#    {{ form_row(AddForm.number_apartment) }}#}
+
         <button type="submit" name="submit" id="submit">Zapisz!</button>
 {#    </form>#}
     <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>
