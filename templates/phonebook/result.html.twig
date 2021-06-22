@@ -21,6 +21,7 @@
             <th>Ulica</th>
             <th>Numer budynku</th>
             <th>Numer mieszkania</th>
+            <th>Akcja</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,8 @@
             <td>{{ contact.getStreet() }}</td>
             <td>{{ contact.getNumberOfTheBulding() }}</td>
             <td>{{ contact.getNumberApartment() }}</td>
+            <td><a href="{{ path('EditContact',{slug: contact.id })}}">Edytuj</a> |
+                <a href="{{ path('DeleteContact',{slug: contact.id })}}">Usuń</a> |</td>
         </tr>
         {% endfor %}
         </tbody>

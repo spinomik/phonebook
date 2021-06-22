@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\AddContact;
-use App\Form\SearchForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,16 +54,16 @@ class ContactController extends AbstractController
      * @Route("/edit/{slug}", name="EditContact")
      */
 
-    public function edit(EntityManagerInterface $entityManager, Request $request ){
+    public function edit($slug,EntityManagerInterface $entityManager, Request $request){
         $repository = $entityManager->getRepository(Contact::class);
-        $contact = $repository->findAll();
+        $contact = $repository->findOneBy(['id' =>$slug]);
         $form =$this->createForm(AddContact::class, $contact);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $contact2 = $form->getData();
-            $entityManager->persist($contact2);
+            $contact = $form->getData();
+            $entityManager->persist($contact);
             $entityManager->flush();
-            $this->addFlash('success','Dodano rekord do bazy danych');
+            $this->addFlash('success','Edytowano rekord');
 
             return $this->redirectToRoute('phoneBook');
         }

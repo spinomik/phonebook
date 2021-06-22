@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Entity\Contact;
@@ -14,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PhoneBookController extends AbstractController
 {
+
     /**
      * @Route("/search", name="search")
      */
@@ -40,23 +40,25 @@ class PhoneBookController extends AbstractController
     }
 
     /**
-     * @Route("/{sort}", name="phoneBook")
+     * @Route("/home/{sort}/{direction}", name="phoneBook")
      */
-    public function homepage($sort='id_down',EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request)
+    public function homepage($sort='id',$direction='ASC', EntityManagerInterface $entityManager, PaginatorInterface $paginator, Request $request)
     {
-        $repository = $entityManager->getRepository(Contact::class);
-            if ($sort=='id_up'){
-                $contacts = $repository->findBy([],['id'=>'DESC']);
+            $repository = $entityManager->getRepository(Contact::class);
+            if ($direction == 'DESC'){
+                $contacts = $repository->findBy([],[$sort=>'DESC']);
             }
-            elseif ($sort=='id_down')
-                $contacts = $repository->findBy([],['id'=>'ASC']);
+            elseif ($sort != 'ASC')
+                $contacts = $repository->findBy([],[$sort=>'ASC']);
+
         $paginator=$paginator->paginate(
-            $contacts,
-            $request->query->getInt('page',1),
-            10);
+        $contacts,
+        $request->query->getInt('page',1),
+        10);
         return $this->render('phonebook/phonebook.html.twig',[
-            'pagination' => $paginator,
-            'sort' => $sort,
+        'pagination' => $paginator,
+        'sort' => $sort,
+        'direction' =>$direction,
         ]);
     }
     /**
