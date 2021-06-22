@@ -3,6 +3,7 @@
     <h1>Dodaj Kontakt!</h1>
     {{ form_start(AddForm) }}
     {{ form_widget(AddForm) }}
+
 {#    {{ form_row(AddForm.Name) }}#}
 {#    {{ form_row(AddForm.last_name) }}#}
 {#    {{ form_row(AddForm.phone_number) }}#}
@@ -14,7 +15,6 @@
 
         <button type="submit" name="submit" id="submit">Zapisz!</button>
 {#    </form>#}
-    <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>
 
     {{ form_end(AddForm) }}
 {% endblock %}

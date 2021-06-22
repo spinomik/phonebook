@@ -2,6 +2,7 @@
 {% block body %}
 <H1> Książka Telefoniczna </H1>
     <h2><a href="{{ path('AddContact')}}">Dodaj kontakt</a></h2>
+    <h2><a href="{{ path('search')}}">Szaukaj</a></h2>
     {% for message in app.flashes('success') %}
         <div>
             {{ message }}
@@ -11,9 +12,9 @@
         <thead>
         <tr>
             {% if sort == 'id_up' %}
-            <th><a href="{{ path('phoneBook', {sort: 'id_down'})}}">ID^</a></th>
+            <th><a href="{{ path('phoneBook', {sort: 'id_down'})}}">ID🢃</a></th>
             {% elseif sort == 'id_down' %}
-            <th><a href="{{ path('phoneBook', {sort: 'id_up'})}}">ID </a></th>
+            <th><a href="{{ path('phoneBook', {sort: 'id_up'})}}">ID🡹</a></th>
             {% endif %}
             <th>Imię</th>
             <th>Nazwisko</th>

@@ -28,7 +28,7 @@ class Contact
     private $last_name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $phone_number;
 
@@ -48,7 +48,7 @@ class Contact
     private $street;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $number_of_the_bulding;
 

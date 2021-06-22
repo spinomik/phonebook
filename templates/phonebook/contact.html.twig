@@ -17,7 +17,6 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ contact.id }}</td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.getLastName() }}</td>
                 <td>{{ contact.getPhoneNumber() }}</td>
@@ -29,6 +28,4 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('phoneBook') }}">Powrót do Książki Telefonicznej</a>
 {% endblock %}

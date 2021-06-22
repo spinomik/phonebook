@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\AddContact;
+use App\Form\SearchForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
